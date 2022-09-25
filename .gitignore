@@ -48,3 +48,6 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 .idea/*
+
+todo/users_app/__pycache__/*
+todo/todo/__pycache__/
