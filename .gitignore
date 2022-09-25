@@ -1,5 +1,5 @@
 venv/*
-
+todo/frontend/node_modules/*
 
 # auto-import.
 # .idea/artifacts
@@ -48,3 +48,12 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 .idea/*
+
+todo/users_app/__pycache__/*
+todo/todo/__pycache__/
+
+todo/frontend/node_modules/.bin/
+
+todo/frontend/node_modules/.cache/babel-loader/
+
+todo/frontend/node_modules/\@babel/core/lib/transformation/util/
