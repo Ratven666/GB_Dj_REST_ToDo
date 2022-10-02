@@ -1,6 +1,6 @@
 from django.db import models
 
-from todo.users_app.models import User
+from users_app.models import User
 
 
 class Project(models.Model):
@@ -14,7 +14,7 @@ class Project(models.Model):
 
 class Todo(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    root_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    root_user = models.ForeignKey(User, on_delete=models.PROTECT)
     text = models.TextField()
     creation_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)

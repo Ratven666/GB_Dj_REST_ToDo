@@ -57,3 +57,5 @@ todo/frontend/node_modules/.bin/
 todo/frontend/node_modules/.cache/babel-loader/
 
 todo/frontend/node_modules/\@babel/core/lib/transformation/util/
+
+todo/notes_app/__pycache__/
