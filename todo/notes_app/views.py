@@ -18,6 +18,14 @@ class ProjectModelViewSet(ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
     pagination_class = ProjectLimitOffsetPagination
+    filterset_fields = ['name', 'users']
+
+    def get_queryset(self):
+        name = self.request.query_params.get('name', '')
+        projects = Project.objects.all()
+        if name:
+            projects = projects.filter(name__contains=name)
+        return projects
 
 
 class TodoLimitOffsetPagination(LimitOffsetPagination):
@@ -28,9 +36,17 @@ class TodoModelViewSet(ModelViewSet):
     queryset = Todo.objects.all()
     serializer_class = TodoModelSerializer
     pagination_class = TodoLimitOffsetPagination
+    filterset_fields = ['project', 'text']
 
     def destroy(self, request, *args, **kwargs):
         todo = self.get_object()
         todo.is_active = False
         todo.save()
         return Response(status=status.HTTP_200_OK)
+
+    def get_queryset(self):
+        project = self.request.query_params.get('project', '')
+        todos = Todo.objects.all()
+        if project:
+            todos = todos.filter(project=project)
+        return todos
