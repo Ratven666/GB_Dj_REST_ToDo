@@ -3,6 +3,7 @@ import './App.css';
 import React from "react";
 import UserList from "./components/User";
 import ProjectList from "./components/Project";
+import ConcreteProject from "./components/ConcreteProject";
 import TodoList from "./components/Todo";
 import Menu from "./components/Menu";
 import Footer from "./components/Footer";
@@ -51,7 +52,7 @@ class App extends React.Component{
                 <BrowserRouter>
                     <nav>
                         <li>
-                            <Link to='/'>AUTHORS</Link>
+                            <Link to='/'>USERS</Link>
                         </li>
                         <li>
                             <Link to='/projects'>PROJECTS</Link>
@@ -63,7 +64,12 @@ class App extends React.Component{
 
                     <Routes>
                         <Route exact path='/' element={<UserList users={this.state.users}/>}/>
-                        <Route exact path='/projects' element={<ProjectList projects={this.state.projects}/>}/>
+
+                        <Route path='/projects' >
+                            <Route exact path='/projects' element={<ProjectList projects={this.state.projects}/>}/>
+                            <Route path=":project_id" element={<ConcreteProject projects={this.state.projects}/>}/>
+                        </Route>
+
                         <Route exact path='/todos' element={<TodoList todos={this.state.todos}/>}/>
 
                         <Route path='*' element={<NotFound404/>}/>
