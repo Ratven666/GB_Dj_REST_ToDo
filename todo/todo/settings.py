@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     "users_app",
+    "notes_app",
     "corsheaders",
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,13 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users_app.User"
+
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASS": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableRenderer",
+    ],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 100
+}
