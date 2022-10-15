@@ -8,6 +8,12 @@ from rest_framework.viewsets import ModelViewSet
 
 from .serializers import ProjectModelSerializer, TodoModelSerializer
 from .models import Project, Todo
+from rest_framework.permissions import IsAuthenticated, AllowAny, BasePermission
+
+
+class StaffOnly(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_staff
 
 
 class ProjectLimitOffsetPagination(LimitOffsetPagination):
@@ -19,6 +25,7 @@ class ProjectModelViewSet(ModelViewSet):
     serializer_class = ProjectModelSerializer
     pagination_class = ProjectLimitOffsetPagination
     filterset_fields = ['name', 'users']
+    # permission_classes = [StaffOnly]
 
     def get_queryset(self):
         name = self.request.query_params.get('name', '')
@@ -37,6 +44,7 @@ class TodoModelViewSet(ModelViewSet):
     serializer_class = TodoModelSerializer
     pagination_class = TodoLimitOffsetPagination
     filterset_fields = ['project', 'text']
+    # permission_classes = [StaffOnly]
 
     def destroy(self, request, *args, **kwargs):
         todo = self.get_object()
