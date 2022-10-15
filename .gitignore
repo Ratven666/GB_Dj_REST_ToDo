@@ -51,3 +51,7 @@ fabric.properties
 
 todo/users_app/__pycache__/*
 todo/todo/__pycache__/
+
+todo/notes_app/__pycache__/
+
+todo/notes_app/migrations/__pycache__/
